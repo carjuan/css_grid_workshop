@@ -1,36 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <title>Grid Template Areas</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/style.css">
-  <title>Grid Template Areas</title>
-</head>
+  <body>
+    <div class="container">
+      <div class="item item0">
+        <p>I'm a heading</p>
+      </div>
+      <div class="item item1">
+        <p>I'm Sidebar #1</p>
+      </div>
+      <div class="item item2">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
+          sed.
+        </p>
+        <p>Lorem ipsum d</p>
+      </div>
+      <div class="item item3">
+        <p>I'm Sidebar #2</p>
+      </div>
+      <div class="item footer">
+        <p>I'm the footer</p>
+      </div>
+    </div>
 
-<body>
-  <div class="container">
-    <div class="item item1">
-      <p>I'm Sidebar #1</p>
-    </div>
-    <div class="item item2">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, sed.</p>
-      <p>Lorem ipsum d</p>
-    </div>
-    <div class="item item3">
-      <p>I'm Sidebar #2</p>
-    </div>
-    <div class="item footer">
-      <p>I'm the footer</p>
-    </div>
-  </div>
+    <style>
+      .container {
+        display: grid;
+        gap: 20px;
+        /* Note that by using fr units, it makes the columns fully responsive */
+        grid-template-columns: 1fr 5fr 1fr;
+        grid-template-rows: 150px minmax(200px, 1fr) 150px 150px;
+        grid-template-areas:
+          'title title title'
+          'sidebar-1 content sidebar-2'
+          'sidebar-1 content sidebar-2'
+          'footer footer footer';
+      }
 
-  <style>
-    .container {
-      display: grid;
-      grid-gap: 20px;
-    }
-  </style>
-</body>
+      .item0 {
+        grid-area: title;
+      }
 
+      .item1 {
+        grid-area: sidebar-1;
+      }
+
+      .item2 {
+        grid-area: content;
+      }
+
+      .item3 {
+        grid-area: sidebar-2;
+      }
+      .footer {
+        grid-area: footer;
+      }
+
+      @media (max-width: 700px) {
+        .container {
+          grid-template-areas:
+            'title title title'
+            'content content content'
+            'sidebar-1 sidebar-1 sidebar-2'
+            'footer footer footer';
+        }
+      }
+    </style>
+  </body>
 </html>
